@@ -8,7 +8,7 @@
 
 ### 주요 목표
 
-- 실제 도서관 업무 흐름을 소프트웨어로 모델링
+- 실제 도서관 업무 흐름을 소프트웨어로 구현
 - C++ 클래스 설계, 상속, 파일 입출력 등 핵심 개념 실습
 - Git을 활용한 팀 협업 및 버전 관리 경험
 
@@ -169,6 +169,7 @@ bool LoanManager::loanBook(int memberId, int bookId) {
 library-management-system/
 ├── src/
 │   ├── book/         # 도서 관련 클래스
+│   ├── common/         # 공통 클래스
 │   ├── member/       # 회원 관련 클래스
 │   ├── loan/         # 대출·반납 관련 클래스
 │   ├── search/       # 검색·통계 관련 클래스

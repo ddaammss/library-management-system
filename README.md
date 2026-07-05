@@ -169,7 +169,7 @@ bool LoanManager::loanBook(int memberId, int bookId) {
 library-management-system/
 ├── src/
 │   ├── book/         # 도서 관련 클래스
-│   ├── common/         # 공통 클래스
+│   ├── common/       # 공통 클래스
 │   ├── member/       # 회원 관련 클래스
 │   ├── loan/         # 대출·반납 관련 클래스
 │   ├── search/       # 검색·통계 관련 클래스

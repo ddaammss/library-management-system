@@ -5,23 +5,7 @@
 
 LoanManager::LoanManager() {}
 
-std::string LoanManager::todayStr() {
-    time_t now = time(nullptr);
-    struct tm* t = localtime(&now);
-    char buf[11];
-    strftime(buf, sizeof(buf), "%Y-%m-%d", t);
-    return std::string(buf);
-}
-
-std::string LoanManager::dueDateStr(int loanDays) {
-    time_t now = time(nullptr);
-    now += static_cast<time_t>(loanDays) * 86400;
-    struct tm* t = localtime(&now);
-    char buf[11];
-    strftime(buf, sizeof(buf), "%Y-%m-%d", t);
-    return std::string(buf);
-}
-
+// ----------------------------------------------------------------------------------------- 대출
 bool LoanManager::loanBook(int memberId, int bookId, Book& book) {
     if (!book.loanOneCopy()) {
         std::cout << "대출 불가: 재고 없음 (도서 ID " << bookId << ")\n";
@@ -30,12 +14,10 @@ bool LoanManager::loanBook(int memberId, int bookId, Book& book) {
     std::string today = todayStr();
     std::string due   = dueDateStr();
     loans.emplace_back(memberId, bookId, today, due);
-    std::cout << "대출 완료: 회원 " << memberId
-              << " → 도서 \"" << book.getTitle() << "\""
-              << "  반납 예정: " << due << "\n";
+    std::cout << "대출 완료: 회원 " << memberId  << " → 도서 " << book.getTitle() << " 반납 예정: " << due << "\n";
     return true;
 }
-
+// ----------------------------------------------------------------------------------------- 반납
 // bool LoanManager::returnBook(int loanId, Book& book) {
 //     Loan* loan = findById(loanId);
 //     if (!loan) {
@@ -64,11 +46,7 @@ bool LoanManager::loanBook(int memberId, int bookId, Book& book) {
 //     return nullptr;
 // }
 
-void LoanManager::printAll() const {
-    if (loans.empty()) { std::cout << "대출 기록 없음\n"; return; }
-    for (const auto& loan : loans) loan.print();
-}
-
+// ----------------------------------------------------------------------------------------- 통계
 // void LoanManager::printStats() const {
 //     int total    = static_cast<int>(loans.size());
 //     int active   = 0, returned = 0, overdue = 0;
@@ -86,3 +64,25 @@ void LoanManager::printAll() const {
 //               << "반납 완료: " << returned << "건\n"
 //               << "연체 중:   " << overdue  << "건\n";
 // }
+
+std::string LoanManager::todayStr() {
+    time_t now = time(nullptr);
+    struct tm* t = localtime(&now);
+    char buf[11];
+    strftime(buf, sizeof(buf), "%Y-%m-%d", t);
+    return std::string(buf);
+}
+
+std::string LoanManager::dueDateStr(int loanDays) {
+    time_t now = time(nullptr);
+    now += static_cast<time_t>(loanDays) * 86400;
+    struct tm* t = localtime(&now);
+    char buf[11];
+    strftime(buf, sizeof(buf), "%Y-%m-%d", t);
+    return std::string(buf);
+}
+
+void LoanManager::printAll() const {
+    if (loans.empty()) { std::cout << "대출 기록 없음\n"; return; }
+    for (const auto& loan : loans) loan.print();
+}

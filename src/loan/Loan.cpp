@@ -9,12 +9,10 @@ int Loan::nextId = 1;
 Loan::Loan() : id(nextId++), memberId(0), bookId(0) {}
 
 Loan::Loan(int memberId, int bookId, const std::string& loanDate, const std::string& dueDate)
-    : id(nextId++), memberId(memberId), bookId(bookId),
-      loanDate(loanDate), dueDate(dueDate), returnDate("") {}
+    : id(nextId++), memberId(memberId), bookId(bookId), loanDate(loanDate), dueDate(dueDate), returnDate("") {}
 
 Loan::Loan(int id, int memberId, int bookId, const std::string& loanDate, const std::string& dueDate)
-    : id(id), memberId(memberId), bookId(bookId),
-      loanDate(loanDate), dueDate(dueDate), returnDate("") {}
+    : id(id), memberId(memberId), bookId(bookId), loanDate(loanDate), dueDate(dueDate), returnDate("") {}
 
 int Loan::getId() const { return id; }
 int Loan::getMemberId() const { return memberId; }
@@ -51,18 +49,15 @@ void Loan::setReturnDate(const std::string& rd) {
 }
 
 void Loan::print() const {
-    std::cout << "[대출 #" << id << "] "
-              << "회원:" << memberId << "  도서:" << bookId
-              << "  대출일:" << loanDate
-              << "  반납예정:" << dueDate;
+    std::cout << "[대출 #" << id << "] "  << " 회원:" << memberId << " 도서:" << bookId << " 대출일:" << loanDate << " 반납예정:" << dueDate;
     if (isReturned()) {
-        std::cout << "  반납일:" << returnDate;
+        std::cout << "반납일:" << returnDate;
     } else {
         int overdue = getOverdueDays();
         if (overdue > 0)
-            std::cout << "  [연체 " << overdue << "일]";
+            std::cout << " [연체 " << overdue << "일]";
         else
-            std::cout << "  [대출 중]";
+            std::cout << " [대출 중]";
     }
     std::cout << "\n";
 }

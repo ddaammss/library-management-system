@@ -17,7 +17,7 @@ private:
     int stock;               // 전체 보유 수량
     int loanedCount;         // 현재 대출 중인 수량 (stock 중 일부)
 
-    static int nextId;        // 다음에 부여할 ID (자동 증가)
+    inline static int nextId = 1;        // 다음에 부여할 ID (자동 증가)
 
 public:
     // ---- 생성자 ----

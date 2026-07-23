@@ -18,33 +18,33 @@ bool LoanManager::loanBook(int memberId, int bookId, Book& book) {
     return true;
 }
 // ----------------------------------------------------------------------------------------- 반납
-// bool LoanManager::returnBook(int loanId, Book& book) {
-//     Loan* loan = findById(loanId);
-//     if (!loan) {
-//         std::cout << "반납 불가: 대출 기록 없음 (대출 ID " << loanId << ")\n";
-//         return false;
-//     }
-//     if (loan->isReturned()) {
-//         std::cout << "반납 불가: 이미 반납된 기록입니다\n";
-//         return false;
-//     }
-//     int overdue = loan->getOverdueDays();
-//     book.returnOneCopy();
-//     loan->setReturnDate(todayStr());
-//     if (overdue > 0) {
-//         std::cout << "반납 완료 — 연체 " << overdue << "일 / 벌금 " << overdue * 100 << "원\n";
-//     } else {
-//         std::cout << "반납 완료\n";
-//     }
-//     return true;
-// }
+bool LoanManager::returnBook(int loanId, Book& book) {
+    Loan* loan = findById(loanId);
+    if (!loan) {
+        std::cout << "반납 불가: 대출 기록 없음 (대출 ID " << loanId << ")\n";
+        return false;
+    }
+    if (loan->isReturned()) {
+        std::cout << "반납 불가: 이미 반납된 기록입니다\n";
+        return false;
+    }
+    int overdue = loan->getOverdueDays();
+    book.returnOneCopy();
+    loan->setReturnDate(todayStr());
+    if (overdue > 0) {
+        std::cout << "반납 완료 — 연체 " << overdue << "일 / 벌금 " << overdue * 100 << "원\n";
+    } else {
+        std::cout << "반납 완료\n";
+    }
+    return true;
+}
 
-// Loan* LoanManager::findById(int loanId) {
-//     for (auto& loan : loans) {
-//         if (loan.getId() == loanId) return &loan;
-//     }
-//     return nullptr;
-// }
+Loan* LoanManager::findById(int loanId) {
+    for (auto& loan : loans) {
+        if (loan.getId() == loanId) return &loan;
+    }
+    return nullptr;
+}
 
 // ----------------------------------------------------------------------------------------- 통계
 // void LoanManager::printStats() const {

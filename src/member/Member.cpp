@@ -16,7 +16,8 @@ Member::Member(int id, string name, string phone, string joinDate) {
 }
 
 
-// getter
+// ----------------------------------------------------------------------- getter
+// 회원 아이디 조회
 int Member::getId() const {
     // 그냥 멤버 변수를 돌려주기만 하는 함수는 이렇게 한 줄로 끝
     // 함수 끝에 붙는 const는 "이 함수는 멤버 변수를 안 바꾼다"는 약속.
@@ -24,42 +25,46 @@ int Member::getId() const {
     return id;
 }
 
+// 회원 이름 조회
 string Member::getName() const {
     return name;
 }
 
+// 회원 전화번호 조회
 string Member::getPhone() const {
-    // TODO
     return phone;
 }
 
+// 회원가입일 조회
 string Member::getJoinDate() const {
-    // TODO
     return joinDate;
 }
 
+// 대출 가능여부 조회
 bool Member::isCanBorrow() const {
-    // TODO
     return canBorrow;
 }
 
+// 누적 벌금 조회
 int Member::getFineAmount() const {
-    // TODO
     return fineAmount;
 }
 
 
 
 
-// setter
+// ----------------------------------------------------------------------- setter
+// 회원 이름 수정
 void Member::setName(string newName) {
     name = newName;
 }
 
+// 회원 전화번호 수정
 void Member::setPhone(string newPhone) {
     phone = newPhone;
 }
 
+// 대출 가능여부 수정
 void Member::setCanBorrow(bool status) {
     canBorrow = status;
 }
